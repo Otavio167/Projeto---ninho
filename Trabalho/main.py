@@ -13,14 +13,14 @@ def update_song_display(window, musica):
 # Layout da interface gráfica
 layout = [
     [sg.Text(text='Pressione play..', justification='center', background_color='black', text_color='white', size=(200, 0), font='Tahoma', key='song_name')],
-    [sg.Text('PySimpleGUI Player-Music', background_color='black', text_color='white', font=('Tahoma', 7))],
-    [sg.Image(filename='Images/pylot.png', size=(350, 350))],
+    [sg.Text('Spoti-Ninho', background_color='black', text_color='white', font=('Tahoma', 7))],
+    [sg.Image(filename='Trabalho/Images/pilot.png', size=(350, 350))],
     [sg.Button('Anterior', key='previous'), sg.Button('Play', key='play'), sg.Button('Pausar', key='pause'), sg.Button('Próxima', key='next')],
     [sg.Text(background_color='black', size=(200, 0), text_color='white', font=('Tahoma', 10), key='currently_playing')]
 ]
 
 # Criação da janela
-window = sg.Window('Spotify', layout, size=(480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
+window = sg.Window('Spoti-Ninho', layout, size=(480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
 
 player = Player()
 current_song_index = 0

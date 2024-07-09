@@ -1,26 +1,27 @@
 import PySimpleGUI as sg
 import os
+from musica import Musica
 from music_comands import get_files_inside_directory_not_recursive, play_sound, is_sound_playing, pause_sounds, stop_sounds, unpause
 
 sg.theme('Reddit')
+
 song_title_column = [
-    [sg.Text(text='Press play..', justification='center', background_color='black', text_color='white', size=(200, 0), font='Tahoma', key='song_name')]
+    [sg.Text(text='Pressione play...', justification='center', background_color='black', text_color='white', size=(200, 0), font='Tahoma', key='song_name')]
 ]
 
 player_info = [
-    [sg.Text('PySimpleGUI Player-Music', background_color='black', text_color='white', font=('Tahoma', 7))]
+    [sg.Text('Player-Music', background_color='black', text_color='white', font=('Tahoma', 7))]
 ]
 
 currently_playing = [
     [sg.Text(background_color='black', size=(200, 0), text_color='white', font=('Tahoma', 10), key='currently_playing')]
 ]
 
-GO_BACK_IMAGE_PATH = 'Images/back.png'
-GO_FORWARD_IMAGE_PATH = 'Images/next.png'
-PLAY_SONG_IMAGE_PATH = 'Images/play_button.png'
-PAUSE_SONG_IMAGE_PATH = 'Images/pause.png'
-ALBUM_COVER_IMAGE_PATH = os.path.join(os.getcwd(), 'Images', 'pylot.png')
-print(ALBUM_COVER_IMAGE_PATH)
+GO_BACK_IMAGE_PATH = 'Trabalho/Images/back.png'
+GO_FORWARD_IMAGE_PATH = 'Trabalho/Images/next.png'
+PLAY_SONG_IMAGE_PATH = 'Trabalho/Images/play_button.png'
+PAUSE_SONG_IMAGE_PATH = 'Trabalho/Images/pause.png'
+ALBUM_COVER_IMAGE_PATH = 'Trabalho/Images/pilot.png'
 
 # Verifica se o caminho da imagem é válido
 if not os.path.exists(ALBUM_COVER_IMAGE_PATH):
@@ -47,28 +48,28 @@ else:
         [sg.Column(layout=currently_playing, justification='c', element_justification='c', background_color='black', pad=None)]
     ]
 
-    window = sg.Window('Spotify', layout=main, size=(480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
+    window = sg.Window('Spoti-Ninho', layout=main, size=(480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
 
     directory = sg.popup_get_folder('Select Music Directory')
 
-    songs_in_directory = get_files_inside_directory_not_recursive(directory)
+    # Obtém as músicas do diretório e cria objetos Musica
+    files_in_directory = get_files_inside_directory_not_recursive(directory)
+    songs_in_directory = [Musica(artista='', nome=os.path.basename(file), estilo='', duracao=0, file=file) for file in files_in_directory]
     song_count = len(songs_in_directory)
     current_song_index = 0
 
-    def update_song_display():
-        window['song_name'].update(os.path.basename(songs_in_directory[current_song_index]))
-        window['currently_playing'].update(f'Playing: {os.path.basename(songs_in_directory[current_song_index])}')
+    def update_song_display(window, musica):
+        window['song_name'].update(musica.nome)
+        window['currently_playing'].update(f'Tocando: {musica.nome} - {musica.artista}')
 
     while True:
         event, values = window.read()
         if event == sg.WIN_CLOSED:
             break
         elif event == 'play':
-            if is_sound_playing():
-                pass
-            else:
-                play_sound(songs_in_directory[current_song_index])
-                update_song_display()
+            if not is_sound_playing():
+                play_sound(songs_in_directory[current_song_index].file)
+                update_song_display(window, songs_in_directory[current_song_index])
 
         elif event == 'pause':
             if is_sound_playing():
@@ -80,8 +81,8 @@ else:
             if current_song_index + 1 < song_count:
                 stop_sounds()
                 current_song_index += 1
-                play_sound(songs_in_directory[current_song_index])
-                update_song_display()
+                play_sound(songs_in_directory[current_song_index].file)
+                update_song_display(window, songs_in_directory[current_song_index])
             else:
                 print('Última música da lista')
 
@@ -89,8 +90,8 @@ else:
             if current_song_index > 0:
                 stop_sounds()
                 current_song_index -= 1
-                play_sound(songs_in_directory[current_song_index])
-                update_song_display()
+                play_sound(songs_in_directory[current_song_index].file)
+                update_song_display(window, songs_in_directory[current_song_index])
             else:
                 print('Primeira música da lista')
 
