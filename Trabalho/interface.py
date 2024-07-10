@@ -7,7 +7,7 @@ import musica
 sg.theme('Reddit')
 
 song_title_column = [
-    [sg.Text(text='Pressione play...', justification='center', background_color='black', text_color='white', size=(200, 0), font='Tahoma', key='song_name')]
+    [sg.Text(text='Pressione play...', justification='center', background_color='black', text_color='white', size=(200, 0), font=('Cooper Black', 14), key='song_name')]
 ]
 
 player_info = [
@@ -15,7 +15,7 @@ player_info = [
 ]
 
 currently_playing = [
-    [sg.Text(background_color='black', size=(200, 0), text_color='white', font=('Tahoma', 10), key='currently_playing')]
+    [sg.Text(background_color='black', size=(200, 0), text_color='white', font=('Cooper Black', 10), key='currently_playing')]
 ]
 
 GO_BACK_IMAGE_PATH = 'Trabalho/Images/back.png'

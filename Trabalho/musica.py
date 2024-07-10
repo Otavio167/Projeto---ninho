@@ -20,7 +20,7 @@ duração: {selfie.duracao}.''')
 
 m1 = musica("Maneskin", "Beggin", "Rock", 149, 'Trabalho/rep_musicas/Beggin.mp3', "Trabalho/Images/Beggin.png")
 m2 = musica("Natanzinho", "Anjo Azul", "Sertanejo", 143, "Trabalho/rep_musicas/anjo.mp3", "Trabalho/Images/anjo.png" )
-m3 = musica("Marila Medonça","Troco de calçada", "Sertanejo", 154, "Trabalho/rep_musicas/mm.mp3", "Trabalho/Images/MM.png")
+m3 = musica("Marília Mendonça (cover)","Troco de calçada", "Sertanejo", 154, "Trabalho/rep_musicas/mm.mp3", "Trabalho/Images/MM.png")
 m4 = musica("Link Park", "In The End", "Eletrônica", 167, "Trabalho/rep_musicas/link_park.mp3", "Trabalho/Images/link.png")
 m5 = musica("Ikimono-gakari", "Blue Bird", "Anime", 250, "Trabalho/rep_musicas/Blue Bird.mp3", "Trabalho/Images/bluebird.png")
 m6 = musica("Delacruz", "Sunshine", "Hip Hop", 230, "Trabalho/rep_musicas/delacruz.mp3", "Trabalho/Images/sunshine (1).png")
