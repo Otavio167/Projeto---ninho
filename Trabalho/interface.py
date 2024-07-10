@@ -45,7 +45,7 @@ main = [
     [sg.Column(layout=currently_playing, justification='c', element_justification='c', background_color='black', pad=None)]
 ]
 
-window = sg.Window('Spoti-Ninho', layout=main, size=(480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
+window = sg.Window('PySimpleGUI-SpotNinho', layout=main, size=(480, 730), background_color='black', finalize=True, grab_anywhere=True, resizable=False)
 
 def update_song_display(window, musica):
     
