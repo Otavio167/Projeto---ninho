@@ -1,7 +1,5 @@
-import os
 import pygame
-import musica
-import time
+
 
 pygame.mixer.init()
 
@@ -28,3 +26,5 @@ class Player:
     def parar(self):
 
         pygame.mixer.music.stop()
+
+    
